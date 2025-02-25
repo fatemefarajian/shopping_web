@@ -25,3 +25,8 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['created', 'updated']
     inlines = [ImageInline, FeatureInline]
 
+
+@admin.register(ProductFeatures)
+class ProductFeaturesAdmin(admin.ModelAdmin):
+    list_display = ('name', 'value', 'product')
+

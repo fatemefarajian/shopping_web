@@ -21,9 +21,13 @@ class Product(models.Model):
     slug = models.SlugField(max_length=250, unique=True, verbose_name='اسلاگ')
     description = models.TextField(verbose_name='توضیحات')
     inventory = models.PositiveIntegerField(default=0, verbose_name='موجودی')
+
+    #price
     price = models.PositiveIntegerField(default=0, verbose_name='قیمت')
     off = models.PositiveIntegerField(default=0, verbose_name='تخفیف')
     new_price = models.PositiveIntegerField(default=0, verbose_name='قیمت پس از تخفیف')
+
+    #date
     created = models.DateTimeField(auto_now_add=True, verbose_name='زمان ایجاد')
     updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ به روز رسانی')
 
@@ -41,7 +45,7 @@ class Product(models.Model):
         return self.name
 
 
-class ProductFeature(models.Model):
+class ProductFeatures(models.Model):
     name = models.CharField(max_length=250, verbose_name='نام ویژگی')
     value = models.CharField(max_length=250, verbose_name='مقدار ویژگی')
     product = models.ForeignKey(Product, related_name='features', on_delete=models.CASCADE, verbose_name='محصول')
