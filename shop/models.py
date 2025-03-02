@@ -1,5 +1,4 @@
-from audioop import reverse
-
+from django.urls import reverse
 from django.db import models
 
 
@@ -47,7 +46,7 @@ class Product(models.Model):
         verbose_name_plural = 'محصولات'
 
     def get_absolute_url(self):
-        return reverse('shop:product_detail', args=[self.slug, self.id])
+        return reverse('shop:product_detail', kwargs={'id': self.id, 'slug': self.slug})
 
     def __str__(self):
         return self.name

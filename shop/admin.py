@@ -8,7 +8,7 @@ class ImageInline(admin.TabularInline):
 
 
 class FeatureInline(admin.TabularInline):
-    model = ProductFeature
+    model = ProductFeatures
     extra = 0
 
 
