@@ -25,6 +25,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=250, unique=True, verbose_name='اسلاگ')
     description = models.TextField(verbose_name='توضیحات')
     inventory = models.PositiveIntegerField(default=0, verbose_name='موجودی')
+    weight = models.PositiveIntegerField(default=0, verbose_name='وزن')
 
     #price
     price = models.PositiveIntegerField(default=0, verbose_name='قیمت')

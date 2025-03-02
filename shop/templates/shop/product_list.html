@@ -5,15 +5,15 @@
     {% if category %}
     <h1>لیست محصولات بر اساس دسته بندی {{category.name}}</h1>
     {% else %}
-     <h1>لیست محصولات</h1>
+    <h1>لیست محصولات</h1>
     {% endif %}
 </div>
 <div class="container">
     <div class="small-div">
         <ul class="categories">
-             <li class="category"><a href="{% url 'shop:product_list' %}">تمام دسته بندی ها</a></li>
+            <li class="category"><a href="{% url 'shop:product_list' %}">تمام دسته بندی ها</a></li>
             {%for ct in categories %}
-                <li class="category"><a href="{{ ct.get_absolute_url }}">{{ct.name}}</a></li>
+            <li class="category"><a href="{{ ct.get_absolute_url }}">{{ct.name}}</a></li>
             {% endfor %}
         </ul>
     </div>
@@ -23,10 +23,10 @@
             <h2><a href="{{ product.get_absolute_url }}">{{product.name}}</a></h2>
             <img class="pic" src="{{product.images.first.file.url}}" alt="">
             <div class="price">
-            <span class="original-price">{{product.price}}</span>
-            <br>
-             <span class="discount-price">{{product.new_price}}</span>
-        </div>
+                <span class="original-price">{{product.price}}</span>
+                <br>
+                <span class="discount-price">{{product.new_price}}</span>
+            </div>
         </div>
         {% endfor %}
     </div>
