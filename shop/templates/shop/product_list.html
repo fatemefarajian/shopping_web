@@ -11,7 +11,7 @@
 <div class="container">
     <div class="small-div">
         <ul class="categories">
-             <li class="category"><a href="{% url 'shop:product_list' %}">All Categories</a></li>
+             <li class="category"><a href="{% url 'shop:product_list' %}">تمام دسته بندی ها</a></li>
             {%for ct in categories %}
                 <li class="category"><a href="{{ ct.get_absolute_url }}">{{ct.name}}</a></li>
             {% endfor %}

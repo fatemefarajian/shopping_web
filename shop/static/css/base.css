@@ -10,7 +10,7 @@
 }
 .small-div{
     width:170px;
-    height:250px;
+    height:300px;
     background-color: plum;
     padding: 10px;
 }
@@ -46,4 +46,36 @@ a:link, a:visited{
 }
 .discount-price{
     color: white;
+}
+.product-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+.product-detail{
+    width: 40%;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+}
+.discount-price-d {
+    color: olivedrab;
+}
+.product-image{
+    width: 50%;
+    box-sizing: border-box;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+.product-image img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+.product-description{
+    clear: both;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
 }
