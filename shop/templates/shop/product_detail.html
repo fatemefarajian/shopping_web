@@ -21,10 +21,12 @@
             قیمت پس از تخفیف:
             <span class="discount-price-d">{{product.new_price}}</span>
         </div>
+        <br>
+        <button type="button" id="add-cart">افزودن به سبد خرید</button>
     </div>
     <div class="product-image">
-        {% for image in product.images.all %}
-            <img src="{{ image.image_file.url }}" alt="{{ image.title }}">
+        {% for img in product.images.all %}
+            <img src="{{ img.file.url }}" alt="{{ img.title }}">
         {% endfor %}
 
     </div>
@@ -33,5 +35,22 @@
 <div class="product-description">
     <h3>توضیحات محصول:</h3>
     <p>{{product.description}}</p>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function (){
+            $('#add-cart').click(function (){
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "cart:add_to_cart" product.id %}',
+                    data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                    success: function (response){
+                        $('.item-count').text(response.item_count);
+                        $('.total-price').text(response.total_price);
+                    },
+                })
+            })
+        })
+    </script>
 </div>
 {% endblock content%}

@@ -93,7 +93,7 @@ a:link, a:visited{
 }
 .cart-link{
     text-decoration: none;
-    color: black;
+    color: white;
     display: flex;
     align-items: center;
 }
@@ -109,8 +109,21 @@ a:link, a:visited{
 
 }
 .cart-icon{
-    color: black;
+    color: white;
 }
 .cart-info{
-    color: black;
+    color: white;
+}
+
+
+button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
 }
