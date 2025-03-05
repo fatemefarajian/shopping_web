@@ -1,103 +1,242 @@
-.header{
-    padding: 20px;
+.header {
+    padding: 20px;  /* افزایش padding برای فضای بیشتر */
     background-color: mediumpurple;
     color: white;
     text-align: center;
     margin-top: 60px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid darkmagenta; /* اضافه کردن یک خط پایین */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* سایه برای جلوه‌ای بیشتر */
+}
+/* استایل کلی */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
 
+.header h1 {
+    margin: 0;
+    font-size: 2rem;
 }
-.container{
+/* استایل برای لینک‌های هدر */
+.header .header-links {
+    margin-top: 10px; /* فاصله بین عنوان و لینک‌ها */
+}
+
+.header .header-links a {
+    margin: 0 15px; /* فاصله افقی بین لینک‌ها */
+    color: white; /* تغییر رنگ به سفید */
+    text-decoration: none; /* زیرخط برای تمایز */
+}
+
+.header .header-links a:hover {
+    color: lightgray; /* تغییر رنگ هنگام هاور */
+}
+
+/* استایل برای container */
+.container {
     display: flex;
+    margin-top: 20px; /* فاصله بین هدر و container */
 }
-.small-div{
-    width:170px;
-    height:300px;
+
+/* استایل برای سایدبار دسته‌بندی */
+.small-div {
+    width: 170px;
+    height: auto;  /* تغییر ارتفاع به خودکار */
     background-color: plum;
-    padding: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* سایه برای نرمی */
 }
-a:link, a:visited{
-    color: darkmagenta;
+
+/* استایل برای دسته ها */
+.categories {
+    padding: 0;  /* حذف padding */
+}
+
+.category {
+    margin: 10px 0;  /* فاصله عمودی بیشتر */
+}
+
+.category a {
+    display: block; /* لینک را به صورت بلوکی تنظیم کن */
     text-decoration: none;
+    padding: 10px;
+    background-color: #fff; /* پس‌زمینه سفید */
+    color: darkmagenta;
+    border-radius: 5px; /* گوشه‌ها گرد */
+    text-align: center; /* متن وسط‌چین */
+    transition: background-color 0.3s, color 0.3s; /* انیمیشن تغییر رنگ */
 }
-.large-div{
+
+.category a:hover {
+    background-color: darkmagenta; /* رنگ پس‌زمینه هنگام هاور */
+    color: white; /* تغییر رنگ متن هنگام هاور */
+}
+
+/* استایل برای قسمت محصولات */
+.large-div {
     flex-grow: 1;
     background-color: lightpink;
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
+    gap: 15px; /* افزایش فاصله بین محصولات */
+}
+
+/* استایل برای هر محصول */
+.product {
+    text-align: center;
+    border: 1px solid #ddd; /* رنگ ملایم برای مرز */
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #ffffff; /* زمینه سفید */
+    transition: transform 0.2s; /* اضافه کردن انیمیشن */
 
 }
-.product{
-    text-align: center;
-    border: 1px solid ;
-    padding: 10px;
+    /* استایل لینک‌های نام محصولات */
+.product a {
+    text-decoration: none; /* حذف زیرخط */
+    color: inherit; /* رنگ لینک را از والد بگیرد */
+    font-weight: bold; /* برای جلب توجه بیشتر */
 }
-.pic{
+
+.product a:hover {
+    color: darkmagenta; /* تغییر رنگ لینک در هاور */
+}
+
+
+.product:hover {
+    transform: scale(1.05); /* بزرگ شدن محصول در هاور */
+}
+
+/* استایل برای تصاویر محصولات */
+.pic {
     width: 150px;
     height: 150px;
+    border-radius: 5px; /* گوشه‌ها گرد */
 }
-.price{
+
+/* استایل برای قیمت‌ها */
+.price {
     position: relative;
     margin-top: 10px;
 }
-.original-price{
+
+.original-price {
     text-decoration: line-through;
-    color: red;
+    color: #999;
 }
-.discount-price{
+
+.discount-price {
+    color: olivedrab; /* رنگ تخفیف */
+    font-weight: bold; /* افکت بولد */
+}
+
+
+/* استایل برای container محصول */
+.product-container {
+    display: flex; /* چیدمان فلکس */
+    margin: 20px; /* حاشیه اطراف */
+    gap: 20px; /* فاصله بین عناصر */
+}
+
+/* استایل برای جزئیات محصول */
+.product-detail {
+    flex: 1; /* مقدار فضای مساوی */
+    padding: 15px; /* Padding برای فضای داخلی */
+    border: 1px solid #ddd; /* مرز حداقلی */
+    border-radius: 8px; /* گرد کردن گوشه‌ها */
+    background-color: #f9f9f9; /* رنگ ملایم برای پس‌زمینه */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* سایه برای عمق بیشتر */
+}
+
+/* استایل برای تصویر محصول */
+.product-image {
+    flex: 1; /* مقدار فضای مساوی */
+    text-align: center; /* تراز به وسط */
+}
+
+/* استایل برای تصویر محصول */
+.product-image img {
+    max-width: 100%; /* حداکثر عرض تصویر */
+    height: auto; /* نسبت ابعاد خود را حفظ کند */
+    border-radius: 8px; /* گرد کردن گوشه‌ها */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* سایه بیشتر */
+}
+
+/* استایل دکمه اضافه به سبد خرید */
+#add-cart {
+    background-color: #3498db; /* رنگ دکمه */
+    color: white; /* رنگ متن */
+    padding: 12px 20px; /* فضاسازی دکمه */
+    border: none; /* بدون مرز */
+    border-radius: 5px; /* گرد کردن گوشه‌ها */
+    cursor: pointer; /* نشانه‌گر دست */
+    font-size: 1.1rem; /* اندازه متن مناسب */
+    transition: background-color 0.3s ease; /* انیمیشن تغییر رنگ */
+    margin-top: 20px; /* فاصله بالای دکمه */
+}
+
+#add-cart:hover {
+    background-color: #2980b9; /* رنگ دکمه هنگام هاور */
+}
+
+
+/* استایل برای لیست ویژگی‌های محصول */
+ul {
+    list-style-type: none; /* حذف نقاط */
+    padding: 0; /* حذف padding */
+    margin: 10px 0; /* فاصله عمودی */
+}
+
+/* استایل برای هر عنصر لیست */
+li {
+    margin-bottom: 5px; /* فاصله بین عناصر لیست */
+    font-size: 1rem; /* اندازه متن مناسب */
+    color: #444; /* رنگ مناسب برای متن */
+}
+
+/* استایل برای دکمه‌های دیگر در صورت نیاز (اختیاری) */
+.button {
+    display: inline-block; /* در صورت استفاده از دکمه‌ها با دیزاین */
+    background-color: #007bff;
     color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
 }
-.product-container{
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
+
+/* تعریف حالت هاور برای دکمه‌ها */
+.button:hover {
+    background-color: #0056b3; /* رنگ دکمه در هاور */
 }
-.product-detail{
-    width: 40%;
-    padding: 20px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-}
-.discount-price-d {
-    color: olivedrab;
-}
-.product-image{
-    width: 50%;
-    box-sizing: border-box;
-    padding: 20px;
-    border: 1px solid #ccc;
-}
-.product-image img{
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 10px;
-}
-.product-description{
-    clear: both;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-}
-.cart-container{
+/* استایل برای خرید سبد در هدر */
+.cart-container {
     width: 98.2%;
     position: fixed;
     top: 0;
-
     padding: 10px;
     background-color: lightpink;
     border-bottom-left-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0, 0.1);
-
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.cart-link{
+
+/* استایل برای لینک سبد خرید */
+.cart-link {
     text-decoration: none;
     color: white;
     display: flex;
     align-items: center;
 }
-.cart-info-container{
+
+/* استایل اطلاعات سبد خرید */
+.cart-info-container {
     width: 200px;
     height: 50px;
     background-color: plum;
@@ -106,24 +245,176 @@ a:link, a:visited{
     align-items: center;
     padding: 0 10px;
     margin-left: 20px;
-
 }
-.cart-icon{
+
+/* استایل آیکون و اطلاعات سبد خرید */
+.cart-icon, .cart-info {
     color: white;
 }
-.cart-info{
-    color: white;
+
+/* استایل برای لیست‌ها */
+ul {
+    list-style-type: none; /* حذف نقاط */
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+    font-size: 1rem;
 }
 
 
-button {
-    padding: 10px 15px;
-    background-color: #28a745;
+/* استایل محتوای سبد خرید */
+.cart-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.product-item img {
+    border-radius: 8px;
+    width: 150px;
+    height: auto;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.product-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: #4CAF50;
+}
+
+.product-info h3 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.product-info p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.actions button {
+    background-color: #4CAF50;
     color: white;
     border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 1rem;
 }
 
-button:hover {
-    background-color: #218838;
+.actions button:hover {
+    background-color: #45a049;
+}
+
+.actions .delete {
+    cursor: pointer;
+    color: #ff4d4d;
+    font-size: 1.2rem;
+}
+
+.actions .delete:hover {
+    color: #e60000;
+}
+
+.product-separator {
+    border: 0;
+    height: 1px;
+    background-color: #eee;
+    margin: 10px 0;
+}
+
+.empty-cart-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+    padding: 20px;
+}
+
+.cart-total-price {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+}
+
+.cart-total-price p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.cart-total-price span {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.checkout-button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.checkout-button div {
+    flex: 1;
+    text-align: center;
+}
+
+.checkout-button a {
+    text-decoration: none;
+    color: white;
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.checkout-button a:hover {
+    background-color: #45a049;
+}
+
+.checkout-button .back-btn a {
+    background-color:blueviolet;
+}
+
+.checkout-button .back-btn a:hover {
+    background-color:darkmagenta;
+}
+.checkout-button a:hover {
+    background-color: #45a049;
+}
+
+
+
+/* استایل برای سبد خرید خالی */
+.cart-content:empty::before {
+    content: "سبد خرید شما خالی است!";
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+    padding: 20px;
 }

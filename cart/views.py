@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from shop.models import Product
 from .cart import Cart
 
+
 @require_POST
 def add_to_cart(request, product_id):
     try:
@@ -21,4 +22,9 @@ def add_to_cart(request, product_id):
         return JsonResponse(context)
 
     except:
-        return JsonResponse({"error": "Something went wrong"})
+        return JsonResponse({"error": "Invalid request"})
+
+
+def cart_detail(request):
+    cart = Cart(request)
+    return render(request, "cart/cart_detail.html", {"cart": cart})

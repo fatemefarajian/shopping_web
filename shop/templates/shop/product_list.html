@@ -21,7 +21,9 @@
         {% for product in products %}
         <div class="product">
             <h2><a href="{{ product.get_absolute_url }}">{{product.name}}</a></h2>
+            <a href="{{ product.get_absolute_url }}">
             <img class="pic" src="{{product.images.first.file.url}}" alt="">
+                </a>
             <div class="price">
                 <span class="original-price">{{product.price}}</span>
                 <br>

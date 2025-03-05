@@ -1,0 +1,54 @@
+{% extends 'parent/base.html' %}
+{% block title %}cart detail{% endblock title %}
+{% block content %}
+    <div class="header">
+        <h1>سبد خرید</h1>
+    </div>
+
+    <div class="cart-content">
+        {% for item in cart %}
+            {% with product=item.product %}
+                <div class="product-item">
+                    <a href="{% url 'shop:product_detail' product.id product.slug %}">
+                        <img src="{{ product.images.first.file.url }}" alt="{{ product.images.first.image_file }}">
+                    </a>
+
+                    <div class="product-info">
+                        <h3>
+                            <a href="{% url 'shop:product_detail' product.id product.slug %}">
+                                نام محصول: {{ product.name }}
+                            </a>
+                        </h3>
+
+                        <p>تعداد: <span class="quantity">{{ item.quantity }}</span></p>
+                        <p>قیمت: <span class="price">{{ item.price }}</span> تومان</p>
+                        <p>مجموع قیمت: <span class="product-total-price">{{ item.total }}</span> تومان</p>
+                    </div>
+
+                    <div class="actions">
+                        <button class="quantity-decrease">-</button>
+                        <button class="quantity-add">+</button>
+                        <span class="delete">🗑️</span>
+                    </div>
+                </div>
+            {% endwith %}
+
+            {% if not forloop.last %}
+                <hr class="product-separator">
+            {% endif %}
+        {% empty %}
+            <p class="empty-cart-message">سبد خرید شما خالی است!</p>
+        {% endfor %}
+
+        <div class="cart-total-price">
+            <p>قیمت کل محصولات: <span id="total-price">{{ cart.get_total_price }}</span> تومان</p>
+            <p>هزینه پستی: <span class="post-price">{{ cart.get_post_price }}</span> تومان</p>
+            <p>هزینه نهایی: <span class="final-price">{{ cart.get_final_price }}</span> تومان</p>
+        </div>
+
+        <div class="checkout-button">
+            <div class="continue-btn"><a href="#">ادامه خرید</a></div>
+            <div class="back-btn"><a href="{% url 'shop:product_list' %}">برگشت به لیست محصولات</a></div>
+        </div>
+    </div>
+{% endblock %}

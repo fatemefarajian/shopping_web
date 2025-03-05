@@ -5,36 +5,43 @@
     <h1>جزئیات محصول</h1>
 </div>
 <div class="product-container">
-    <div class="product-detail">
-        <h2>{{product.name}}</h2>
-        <p>دسته بندی:{{product.category}}</p>
-        <p>موجودی:{{product.inventory}}</p>
-        <ul>
-            {% for f in product.features.all %}
-            <li>{{f.name}} : {{f.value}}</li>
-            {% endfor %}
-        </ul>
-        <div class="price">
-            قیمت اصلی:
-            <span class="original-price">{{product.price}}</span>
+        <div class="product-detail">
+            <h2>{{product.name}}</h2>
+            <p>دسته بندی:{{product.category}}</p>
+            <p>موجودی:{{product.inventory}}</p>
+            <ul>
+                {% for f in product.features.all %}
+                <li>{{f.name}} : {{f.value}}</li>
+                {% endfor %}
+            </ul>
+            <div class="price">
+                قیمت اصلی:
+                <span class="original-price">{{product.price}}</span>
+                <br>
+                قیمت پس از تخفیف:
+                <span class="discount-price">{{product.new_price}}</span>
+            </div>
             <br>
-            قیمت پس از تخفیف:
-            <span class="discount-price-d">{{product.new_price}}</span>
+            <button type="button" id="add-cart">افزودن به سبد خرید</button>
+
         </div>
-        <br>
-        <button type="button" id="add-cart">افزودن به سبد خرید</button>
-    </div>
-    <div class="product-image">
+      <div class="product-image">
         {% for img in product.images.all %}
             <img src="{{ img.file.url }}" alt="{{ img.title }}">
         {% endfor %}
 
     </div>
 
+
+
+
 </div>
 <div class="product-description">
-    <h3>توضیحات محصول:</h3>
-    <p>{{product.description}}</p>
+        <h3>توضیحات محصول:</h3>
+        <p>{{product.description}}</p>
+    </div>
+
+
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
@@ -44,13 +51,14 @@
                     type: 'POST',
                     url: '{% url "cart:add_to_cart" product.id %}',
                     data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
-                    success: function (response){
-                        $('.item-count').text(response.item_count);
-                        $('.total-price').text(response.total_price);
+                    success: function (data){
+                        $('.item-count').text(data.item_count);
+                        $('.total-price').text(data.total_price);
                     },
                 })
             })
         })
     </script>
-</div>
+
+
 {% endblock content%}
