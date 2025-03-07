@@ -60,3 +60,22 @@ def update_quantity(request):
 
     except:
         return JsonResponse({"success": False, "error": "Something went wrong: product not found!"})
+
+
+@require_POST
+def delete_product(request):
+    product_id = request.POST['product_id']
+    try:
+        product = get_object_or_404(Product, id=product_id)
+        cart = Cart(request)
+        cart.delete(product)
+        context={
+            "success": True,
+            'item_count': len(cart),
+            'total_price': cart.get_total_price(),
+            'final_price': cart.get_final_price(),
+
+        }
+        return JsonResponse(context)
+    except:
+        return JsonResponse({"success": False, "error": "Something went wrong: product not found!"})

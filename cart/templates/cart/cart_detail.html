@@ -40,7 +40,7 @@
                 <hr>
             {% endif %}
         {% empty %}
-            سبد خرید شما خالی هست!
+            سبد خرید شما خالی است!
         {% endfor %}
 
         <div class="cart-total-price">
@@ -66,6 +66,10 @@
             $('.quantity-decrease').click(function (){
                 updateQuantity('decrease', $(this).closest('.product-item').data('item-id'));
             });
+            $('.delete').click(function (){
+                deleteProduct($(this).closest('.product-item').data('item-id'));
+            });
+
 
             // {# ——————————————————————————— update-quantity function ——————————————————————————— #}
             function updateQuantity(action, productId) {
@@ -97,6 +101,34 @@
                     }
                 });
             }
+              // {# ——————————————————————————— delete-product function ——————————————————————————— #}
+            function deleteProduct(productId) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "cart:delete_product" %}',
+                    data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                        'product_id': productId,
+                    },
+
+                    success: function (response){
+                        if(response.success){
+                            // {# بخش بالایی(header) #}
+                            $('.item-count').text(response.item_count);
+                            $('.total-price').text(response.total_price);
+                            // {# قیمت کل محصولات، هزینه پستی و هزینه نهایی محصولات #}
+                            $('#total-price').text(response.total_price);
+                            $('.post-price').text(response.post_price);
+                            $('.final-price').text(response.final_price);
+                            // {# حذف کالا از سبد خرید #}
+                            $(`.product-item[data-item-id=${ productId }]`).remove();
+                        }else{
+                            alert("Error update quantity!!!");
+                        }
+                    }
+                });
+            }
+
         });
     </script>
 {% endblock %}
