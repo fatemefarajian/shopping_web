@@ -1,5 +1,8 @@
 {% extends 'parent/base.html' %}
-{% block title %}cart detail{% endblock title %}
+{% load static %}
+
+{% block title %}products{% endblock %}
+
 {% block content %}
     <div class="header">
         <h1>سبد خرید</h1>
@@ -7,10 +10,11 @@
 
     <div class="cart-content">
         {% for item in cart %}
+            {# item = product-info(dictionary) #}
             {% with product=item.product %}
-                <div class="product-item">
+                <div class="product-item" data-item-id="{{ product.id }}">
                     <a href="{% url 'shop:product_detail' product.id product.slug %}">
-                        <img src="{{ product.images.first.file.url }}" alt="{{ product.images.first.image_file }}">
+                        <img src="{{ product.images.first.file.url }}" alt="{{ product.images.first.file }}">
                     </a>
 
                     <div class="product-info">
@@ -20,9 +24,9 @@
                             </a>
                         </h3>
 
-                        <p>تعداد: <span class="quantity">{{ item.quantity }}</span></p>
-                        <p>قیمت: <span class="price">{{ item.price }}</span> تومان</p>
-                        <p>مجموع قیمت: <span class="product-total-price">{{ item.total }}</span> تومان</p>
+                        <p>تعداد: <span class="quantity" id="quantity-{{ product.id }}">{{ item.quantity }}</span></p>
+                        <p>قیمت: <span class="price">{{ item.price }}</span></p>
+                        <p>مجموع قیمت: <span class="product-total-price" id="product-price-{{ product.id }}">{{ item.total }}</span></p>
                     </div>
 
                     <div class="actions">
@@ -32,12 +36,11 @@
                     </div>
                 </div>
             {% endwith %}
-
             {% if not forloop.last %}
-                <hr class="product-separator">
+                <hr>
             {% endif %}
         {% empty %}
-            <p class="empty-cart-message">سبد خرید شما خالی است!</p>
+            سبد خرید شما خالی هست!
         {% endfor %}
 
         <div class="cart-total-price">
@@ -51,4 +54,49 @@
             <div class="back-btn"><a href="{% url 'shop:product_list' %}">برگشت به لیست محصولات</a></div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function (){
+            $('.quantity-add').click(function (){
+                updateQuantity('add', $(this).closest('.product-item').data('item-id'));
+            });
+
+            $('.quantity-decrease').click(function (){
+                updateQuantity('decrease', $(this).closest('.product-item').data('item-id'));
+            });
+
+            // {# ——————————————————————————— update-quantity function ——————————————————————————— #}
+            function updateQuantity(action, productId) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "cart:update_quantity" %}',
+                    data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                        'action': action,
+                        'product_id': productId,
+                    },
+
+                    success: function (response){
+                        if(response.success){
+                            // {# بخش بالایی(header) #}
+                            $('.item-count').text(response.item_count);
+                            $('.total-price').text(response.total_price);
+                            // {# تعداد و مجموع قیمت کالا #}
+                            $('#quantity-' + productId).text(response.quantity);
+                            $('#product-price-' + productId).text(response.product_cost);
+                            // {# قیمت کل محصولات، هزینه پستی و هزینه نهایی محصولات #}
+                            $('#total-price').text(response.total_price);
+                            // $('.post-price').text(response.post_price);
+                            $('.final-price').text(response.final_price);
+
+                        }else{
+                            alert("Error update quantity!!!");
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 {% endblock %}
