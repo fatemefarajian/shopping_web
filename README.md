@@ -8,7 +8,7 @@ It is currently under development and new features are being added step by step.
 - [x] Product list page  
 - [x] Product detail page  
 - [x] Product model with admin panel support  
-- [ ] Add to cart functionality  
+- [x] Add to cart functionality  
 - [ ] User registration and login  
 - [ ] Order checkout system
 
