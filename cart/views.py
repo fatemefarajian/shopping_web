@@ -69,7 +69,7 @@ def delete_product(request):
         product = get_object_or_404(Product, id=product_id)
         cart = Cart(request)
         cart.delete(product)
-        context={
+        context = {
             "success": True,
             'item_count': len(cart),
             'total_price': cart.get_total_price(),
@@ -77,5 +77,6 @@ def delete_product(request):
 
         }
         return JsonResponse(context)
+
     except:
         return JsonResponse({"success": False, "error": "Something went wrong: product not found!"})

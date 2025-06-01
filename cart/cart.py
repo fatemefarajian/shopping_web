@@ -15,7 +15,8 @@ class Cart:
     def add(self, product):
         product_id = str(product.id)
         if product_id not in self.cart:
-            self.cart[product_id] = {'quantity': 1, 'price': product.new_price, 'weight': product.weight}
+            self.cart[product_id] = {'quantity': 1, 'price': product.price,
+                                     'new_price': product.new_price, 'weight': product.weight}
         else:
             if self.cart[product_id]['quantity'] < product.inventory:
                 self.cart[product_id]['quantity'] += 1
